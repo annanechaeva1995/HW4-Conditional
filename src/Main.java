@@ -48,18 +48,14 @@ public class Main {
         boolean infantAge = age > 0 && age < 2;
         if (age >= 2 && age <= 6) {
             System.out.println("Если возраст человека равен " + age + ", то ему нужно ходить в детский сад.");
-        } else {
-            if (infantAge) {
-                System.out.println("В этом возрасте ребенок должен развиваться дома.");
-            }
+        } else if (infantAge) {
+            System.out.println("В этом возрасте ребенок должен развиваться дома.");
         }
         if (age >= 7 && age < 18) {
             System.out.println("Если возраст человека равен " + age + ", то ему нужно ходить в школу.");
-        }
-        if (age >= 18 && age <= 24) {
+        } else if (age >= 18 && age <= 24) {
             System.out.println("Если возраст человека равен " + age + ", то ему нужно учиться в университете.");
-        }
-        if (age > 24) {
+        } else if (age > 24) {
             System.out.println("Если возраст человека равен " + age + ", то ему пора ходить на работу.");
         }
     }
@@ -73,10 +69,8 @@ public class Main {
         boolean withAnAdult = false;
         if (withAnAdult && age >= 5 && age < 14) {
             System.out.println("Если возраст ребенка равен " + age + ", то ему можно кататься на аттракционе только в сопровождении родителей.");
-        } else {
-            if (age >= 5 && age < 14) {
-                System.out.println("В этом возрасте кататься на аттракционе без взрослых запрещено!");
-            }
+        } else if (age >= 5 && age < 14) {
+            System.out.println("В этом возрасте кататься на аттракционе без взрослых запрещено!");
         }
         if (age >= 14) {
             System.out.println("Если возраст ребенка равен " + age + ", то ему можно кататься на аттракционе без сопровождения взрослых.");
@@ -85,38 +79,44 @@ public class Main {
 
     public static void task6() {
         System.out.println("Задание 6");
-        int occupiedSeats = 20;
+        int occupiedSeatsPlaces = 42;
+        int occupiedStandingPlaces = 4;
+        int occupiedPlaces = occupiedSeatsPlaces + occupiedStandingPlaces;
         int railwayCarriageCapacity = 102;
         int seatPlace = 60;
-        boolean thereAreNoPlace = occupiedSeats >= railwayCarriageCapacity;
-        boolean noSeating = occupiedSeats >= seatPlace;
+        int standingPlaces = railwayCarriageCapacity - seatPlace;
+        boolean thereAreNoPlace = occupiedPlaces >= railwayCarriageCapacity;
+        boolean noSeating = occupiedSeatsPlaces >= seatPlace;
         if (thereAreNoPlace) {
             System.out.println("Свободных мест нет.");
         } else {
-            System.out.println("Свободных мест " + (railwayCarriageCapacity - occupiedSeats) + ".");
+            System.out.println("Свободных мест " + (railwayCarriageCapacity - occupiedPlaces) + ".");
         }
         if (noSeating) {
             System.out.println("Сидячих мест нет.");
         } else {
-            System.out.println("Cидячих мест - " + (seatPlace - occupiedSeats) + ".");
+            System.out.println("Cидячих мест - " + (seatPlace - occupiedSeatsPlaces) + ".");
+        }
+        if (standingPlaces < occupiedStandingPlaces) {
+            System.out.println("Стоячих мест нет!");
+        } else {
+            System.out.println("Стоячих мест - " + (standingPlaces - occupiedStandingPlaces) + ".");
         }
     }
 
     public static void task7() {
         System.out.println("Задание 7");
-        int one = 1;
-        int two = 2;
-        int three = 3;
-        if (one > two && one > three) {
+        int one = -105;
+        int two = -7;
+        int three = -105;
+        if (one >= two && one > three || one > two && one >= three) {
             System.out.println("Большее число " + one + ".");
-        } else {
-            if (two > one && two > three) {
-                System.out.println("Большее число " + two + ".");
-            } else {
-                if (three > one && three > two) {
-                    System.out.println("Большее число " + three + ".");
-                }
-            }
+        } else if (one == two && one == three) {
+            System.out.println("Все числа равны.");
+        } else if (two >= one && two > three || two > one && two >= three) {
+            System.out.println("Большее число " + two + ".");
+        } else if (three >= one && three > two || three > one && three >= two) {
+            System.out.println("Большее число " + three + ".");
         }
     }
 }
